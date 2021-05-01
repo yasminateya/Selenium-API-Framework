@@ -18,7 +18,7 @@ public class AuthenticationPage extends PageBase {
     WebElement createAnAccountBtn;
 
     //Already register locators
-    @FindBy(css = "button[id='SubmitLogin'] span")
+    @FindBy(xpath = "//input[@id='email']")
     WebElement emailTextFieldSignIn;
 
     @FindBy(id = "passwd")
@@ -33,6 +33,9 @@ public class AuthenticationPage extends PageBase {
 
     @FindBy(xpath = "//li[normalize-space()='Invalid password.']")
     public WebElement alertLabelPass;
+
+    @FindBy(xpath = "//p[normalize-space()='There is 1 error']")
+    public WebElement alertLabel;
 
 //***********************************Methods*********************************************//
 

@@ -10,7 +10,7 @@ public class HomePage extends PageBase {
     }
 
     @FindBy(className = "login")
-    WebElement signInLink;
+    WebElement signInLink; // refactor it with public by name = by.xpath
 
     public void openSignInAndRegisterPage() {
         signInLink.click();
