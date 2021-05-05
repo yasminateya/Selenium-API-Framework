@@ -1,7 +1,7 @@
 package tests;
 
+import data.LoadProperties;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.AuthenticationPage;
 import pages.HomePage;
@@ -13,63 +13,53 @@ public class SignInTest_PropertiesFile extends TestBase {
     AuthenticationPage authenticationPage;
     MyAccountPage myAccountPage;
 
-    String validMail = "yasminateya96@gmail.com";
-    String invalidMail = "yasmin";
-    String validPassword = "37081128";
-    String invalidPassword = "123";
+    //load data from userdata.properties file
+    String inValidMail = LoadProperties.userData.getProperty("inValidMail");
+    String inValidPassword = LoadProperties.userData.getProperty("inValidPassword");
+    String validMail = LoadProperties.userData.getProperty("validMail");
+    String validPassword = LoadProperties.userData.getProperty("validPassword");
 
-    @DataProvider(name = "testData")
-    public static Object[][] userData(){
-
-            return new Object[][]{
-                    {"yasmin", "123"}, //invalid-invalid
-                    {"yasminateya96@gmail.com", "123"}, //valid-invalid
-                    {"yasmin", "37081128"}, //invalid-valid
-                    {"yasminateya96@gmail.com", "37081128"} //valid-valid
-            };
-    }
-
-    @Test(priority = 1, dataProvider = "userData")
-    public void signInWithInValidMailAndPass(String mail, String password) {
+    @Test(priority = 1)
+    public void signInWithInValidMailAndInValidPass() {
 
         homePage = new HomePage(driver);
         homePage.openSignInAndRegisterPage();
 
         authenticationPage = new AuthenticationPage(driver);
-        authenticationPage.signIn(mail, password);
+        authenticationPage.signIn(inValidMail, inValidPassword);
 
-        doAssertEqual(authenticationPage.alertLabel.isDisplayed(), true, "The mail or password are valid");
+        doAssertEqual(authenticationPage.alertLabelMail.isDisplayed(), true, "The mail is valid");
         softAssert.assertAll();
     }
-//
-//    @Test(priority = 2)
-//    public void signInWithValidMailAndInValidPass() {
-//
-//        homePage = new HomePage(driver);
-//        homePage.openSignInAndRegisterPage();
-//
-//        authenticationPage = new AuthenticationPage(driver);
-//        authenticationPage.signIn(validMail, invalidPassword);
-//
-//        doAssertEqual(authenticationPage.alertLabelPass.isDisplayed(), true, "The password is valid");
-//        softAssert.assertAll();
-//    }
-//
-//    @Test(priority = 3)
-//    public void signInWithInValidMailAndValidPass() {
-//
-//        homePage = new HomePage(driver);
-//        homePage.openSignInAndRegisterPage();
-//
-//        authenticationPage = new AuthenticationPage(driver);
-//        authenticationPage.signIn(invalidMail, validPassword);
-//
-//        doAssertEqual(authenticationPage.alertLabelMail.isDisplayed(), true, "The mail is valid");
-//        softAssert.assertAll();
-//    }
+
+    @Test(priority = 2)
+    public void signInWithValidMailAndInValidPass() {
+
+        homePage = new HomePage(driver);
+        homePage.openSignInAndRegisterPage();
+
+        authenticationPage = new AuthenticationPage(driver);
+        authenticationPage.signIn(validMail, inValidPassword);
+
+        doAssertEqual(authenticationPage.alertLabelPass.isDisplayed(), true, "The password is valid");
+        softAssert.assertAll();
+    }
+
+    @Test(priority = 3)
+    public void signInWithInValidMailAndValidPass() {
+
+        homePage = new HomePage(driver);
+        homePage.openSignInAndRegisterPage();
+
+        authenticationPage = new AuthenticationPage(driver);
+        authenticationPage.signIn(inValidMail, validPassword);
+
+        doAssertEqual(authenticationPage.alertLabelMail.isDisplayed(), true, "The mail is valid");
+        softAssert.assertAll();
+    }
 
     @Test(priority = 4)
-    public void signInSuccessfullyWithValidMailAndValidPass() throws InterruptedException {
+    public void signInWithValidMailAndValidPass() throws InterruptedException {
 
         homePage = new HomePage(driver);
         homePage.openSignInAndRegisterPage();

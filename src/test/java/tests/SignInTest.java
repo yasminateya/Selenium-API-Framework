@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AuthenticationPage;
 import pages.HomePage;
@@ -65,8 +66,8 @@ public class SignInTest extends TestBase {
         authenticationPage.signIn(validMail, validPassword);
 
         myAccountPage = new MyAccountPage(driver);
-        doAssertEqual(myAccountPage.checkElementIsDisplayed(myAccountPage.myAccountPageTitle), true,"Mail and password " +
-                "are not valid");
+        Thread.sleep(1000);
+        Assert.assertTrue(myAccountPage.myAccountNavBar.isDisplayed());
         softAssert.assertAll();
 
     }

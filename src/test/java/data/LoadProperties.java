@@ -8,7 +8,7 @@ import java.util.Properties;
 public class LoadProperties {
 
     //load properties file from the folder
-    public static Properties userData = loadProperties(System.getProperty(("user.dir") + ("/src/main/java/properties/userdata.properties")));
+    public static Properties userData = loadProperties(System.getProperty("user.dir") + ("/src/main/java/properties/userdata.properties"));
 
     private static Properties loadProperties(String path) {
 
@@ -21,7 +21,10 @@ public class LoadProperties {
             System.out.println("Error in fileInputStream: " + e.getMessage());
         } catch (IOException e) {
             System.out.println("Can't load properties file: " + e.getMessage());
+        } catch (NullPointerException e) {  // for null pointer exception in fileInputstream
+            System.out.println("Can't load properties file: " + e.getMessage());
         }
+
         return properties;
     }
 
