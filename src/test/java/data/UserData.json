@@ -1,0 +1,16 @@
+{
+  "inValidValues": [
+    {
+      "mail": "yasmin",
+      "password": "123"
+    },
+    {
+      "mail": "yasminateya96@gmail.com",
+      "password": "123"
+    },
+    {
+      "mail": "yasmin",
+      "password": "37081128"
+    }
+  ]
+}
