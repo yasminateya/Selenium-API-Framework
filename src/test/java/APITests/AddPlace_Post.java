@@ -21,7 +21,7 @@ public class AddPlace_Post { // sec 5,
         RestAssured.baseURI = "https://rahulshettyacademy.com";
         given().log().all().queryParam("key", "qaclick123")   // log all for all (request)input details
                 .header("Content-Type", "application/json")
-                .body(Payload_AddPlace.addPlaceBody())
+                .body(Payload.addPlaceBody())
                 .when().post("/maps/api/place/add/json")
                 .then().log().all()                               // log all response details
                 .assertThat()
@@ -39,7 +39,7 @@ public class AddPlace_Post { // sec 5,
         String response = given().log().all().queryParam("key", "qaclick123")   // log all for all (request)input
                 // details
                 .header("Content-Type", "application/json")
-                .body(Payload_AddPlace.addPlaceBody())
+                .body(Payload.addPlaceBody())
                 .when().post("/maps/api/place/add/json")
                 .then()
                 .assertThat()
@@ -78,7 +78,8 @@ public class AddPlace_Post { // sec 5,
                 .when().get("maps/api/place/get/json")
                 .then().assertThat().log().all()
                 .extract().response().asString();
-        JsonPath getPlaceJson = new JsonPath(getPlaceResponse);
+        JsonPath getPlaceJson = ReusableMethods.rowToJson(getPlaceResponse);
+
         String Actual_newAddressAfterPut = getPlaceJson.getString("address");
         System.out.println(Actual_newAddressAfterPut);
         Assert.assertEquals(Actual_newAddressAfterPut, Expected_newAddressAfterPut);
