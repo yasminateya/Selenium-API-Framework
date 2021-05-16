@@ -7,7 +7,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.AuthenticationPage;
 import pages.HomePage;
-import pages.MyAccountPage;
 
 import java.io.IOException;
 
@@ -15,7 +14,6 @@ public class SignInTest_JSON extends TestBase {
 
     HomePage homePage;
     AuthenticationPage authenticationPage;
-    MyAccountPage myAccountPage;
 
 //    String validMail = "yasminateya96@gmail.com";
 //    String validPassword = "37081128";
@@ -27,7 +25,7 @@ public class SignInTest_JSON extends TestBase {
     }
 
     @Test(priority = 1, dataProvider = "Json data")
-    public void signInWithInValidMailOrInValidPass(UserCredentials credential) throws InterruptedException {
+    public void signInWithInValidMailOrInValidPass(UserCredentials credential) {
 
 //        Object[] user = jsonData.split(", ");
 
@@ -39,7 +37,6 @@ public class SignInTest_JSON extends TestBase {
         authenticationPage.signIn(credential.mail, credential.password);
 
         doAssertEqual(authenticationPage.alertLabel.isDisplayed(), true, "The mail or password are valid");
-        Thread.sleep(5000);
         softAssert.assertAll();
     }
 

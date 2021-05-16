@@ -36,7 +36,7 @@ public class ExcelReader {
 
         int totalNoOfRows = (sh.getLastRowNum() + 1);
         int totalNoOfColumn = 2;
-
+        // = sheet.getRow(0).getLasCellNum
         String[][] excelArray = new String[totalNoOfRows][totalNoOfColumn];
 
         for (int i = 0; i < totalNoOfRows; i++) {
