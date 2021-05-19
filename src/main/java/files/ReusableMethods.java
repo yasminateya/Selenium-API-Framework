@@ -1,4 +1,4 @@
-package APITests;
+package files;
 
 import io.restassured.path.json.JsonPath;
 
