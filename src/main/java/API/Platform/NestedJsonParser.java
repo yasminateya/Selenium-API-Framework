@@ -2,8 +2,10 @@ package API.Platform;
 
 import files.Payload;
 import io.restassured.path.json.JsonPath;
+import org.testng.Assert;
 
 public class NestedJsonParser {
+
     public static void main(String[] args) {
 
         JsonPath jsonPath = new JsonPath(Payload.coursesPriceBody());
@@ -24,5 +26,26 @@ public class NestedJsonParser {
             System.out.println((jsonPath.get("courses[" + i + "].title")).toString());
             System.out.println((jsonPath.get("courses[" + i + "].price")).toString());
         }
+
+//        5. Print no of copies sold by RPA Course
+//        System.out.println(jsonPath.get("courses[2].copies").toString()); //if json fixed
+
+        for (int i = 0; i < noOfCourses; i++) {
+            String courseTitle = jsonPath.get("courses[" + i + "].title");
+            if (courseTitle.equalsIgnoreCase("RPA")){
+                System.out.println((jsonPath.get("courses[" + i + "].copies")).toString());
+                break;
+            }
+
+        }
+
+        int sum = 0;
+        int multiply;
+        for (int i = 0; i < noOfCourses; i++){
+            multiply = Math.multiplyExact((jsonPath.getInt("courses["+i+"].price")),
+                    (jsonPath.getInt("courses["+i+"].copies")));
+            sum += multiply;
+        }
+        Assert.assertEquals(sum, purchaseAmount);
     }
 }
