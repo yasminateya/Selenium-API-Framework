@@ -52,4 +52,13 @@ public class Payload {
 //        5. Print no of copies sold by RPA Course
 //        6. Verify if Sum of all Course prices matches with Purchase Amount
     }
+
+    public static String addBookBody (String isbn, String aisle){
+        return "{\n" +
+                "\"name\":\"Learn Appium Automation with Java\",\n" +
+                "\"isbn\":\""+isbn+"\",\n" +
+                "\"aisle\":\""+aisle+"\",\n" +
+                "\"author\":\"John foe\"\n" +
+                "}\n";
+    }
 }

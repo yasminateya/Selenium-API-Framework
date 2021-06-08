@@ -68,14 +68,15 @@ public class AddPlace_Post { // sec 5,
 
         //get this place to validate the new address is present
         // get method doesn't have header or body because it will retrieve resources with the query params in url
-        String getPlaceResponse = RestAssured.given().queryParam("key", "qaclick123")
+        String getPlaceResponseString = RestAssured.given().queryParam("key", "qaclick123")
                 .queryParam("place_id", placeIdAfterPost)
                 .when().get("maps/api/place/get/json")
                 .then().assertThat().log().all()
                 .extract().response().asString();
-        JsonPath getPlaceJson = ReusableMethods.rowToJson(getPlaceResponse);
+        JsonPath getPlaceResponseJson = ReusableMethods.rowToJson(getPlaceResponseString); //we get the string and convert it to json
+        // and parsing it
 
-        String Actual_newAddressAfterPut = getPlaceJson.getString("address");
+        String Actual_newAddressAfterPut = getPlaceResponseJson.getString("address");
         System.out.println(Actual_newAddressAfterPut);
         //use here testNg assertion instead of assertThat
         Assert.assertEquals(Actual_newAddressAfterPut, Expected_newAddressAfterPut);
