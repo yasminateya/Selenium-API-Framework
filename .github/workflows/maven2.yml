@@ -5,9 +5,9 @@ name: Java CI with Maven2
 
 on:
   push:
-    branches: [ Saucelabs ]
+    branches: [ master ]
   pull_request:
-    branches: [ Saucelabs ]
+    branches: [ master ]
 
 jobs:
   build:
