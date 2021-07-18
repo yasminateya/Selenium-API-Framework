@@ -6,6 +6,7 @@ import pages.AuthenticationPage;
 import pages.CreateAccountPage;
 import pages.HomePage;
 
+
 public class AuthenticationTestGit extends TestBaseGit {
 
     HomePage homePage;
@@ -23,21 +24,27 @@ public class AuthenticationTestGit extends TestBaseGit {
         authenticationPage = new AuthenticationPage(driver);
         authenticationPage.registerWithMail(invalidMail);
 
-        doAssertEqual(authenticationPage.alertLabelMail.isDisplayed(), true, "Create an account page is displayed");
-        softAssert.assertAll();
+        authenticationPage.visibilityWait(authenticationPage.alertLabelMail);
+
+        Assert.assertTrue(authenticationPage.alertLabelMail.isDisplayed(), "Create an account page is displayed");
+
     }
 
     @Test(priority = 2)
-    public void registerWithValidMail() throws InterruptedException {
+    public void registerWithValidMail() {
 
         authenticationPage = new AuthenticationPage(driver);
         authenticationPage.registerWithMail(validMail);
 
         createAccountPage = new CreateAccountPage(driver);
 
-        Thread.sleep(10000);
-        Assert.assertTrue(createAccountPage.genderMr.isDisplayed());
-        softAssert.assertAll();
+        createAccountPage.visibilityWait(createAccountPage.genderMr);
+
+        Assert.assertTrue(createAccountPage.genderMr.isDisplayed()); //I can use the assertTrue method directly also
+
     }
+
+
+
 
 }
