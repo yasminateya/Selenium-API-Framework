@@ -1,17 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 24.178 s <<< FAILURE! - in TestSuite
-registerWithInValidMail(tests.AuthenticationTestGit)  Time elapsed: 2.617 s  <<< FAILURE!
-org.openqa.selenium.NoSuchElementException: 
-no such element: Unable to locate element: {"method":"xpath","selector":"//li[normalize-space()='Invalid email address.']"}
-  (Session info: headless chrome=91.0.4472.114)
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z'
-System info: host: 'Basims-MacBook-Pro.local', ip: 'fe80:0:0:0:18b6:1b76:3de:ca46%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '11.2.3', java.version: '16.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 91.0.4472.114, chrome: {chromedriverVersion: 91.0.4472.101 (af52a90bf870..., userDataDir: /var/folders/20/v6pbb_bx2m9...}, goog:chromeOptions: {debuggerAddress: localhost:58266}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: MAC, platformName: MAC, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: cd6133bc8419cff426d5bd6b760b6682
-*** Element info: {Using=xpath, value=//li[normalize-space()='Invalid email address.']}
-	at tests.AuthenticationTestGit.registerWithInValidMail(AuthenticationTestGit.java:26)
-
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 24.402 s - in TestSuite
