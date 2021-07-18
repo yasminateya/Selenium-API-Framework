@@ -6,7 +6,7 @@ import pages.AuthenticationPage;
 import pages.CreateAccountPage;
 import pages.HomePage;
 
-public class AuthenticationTest extends TestBase {
+public class AuthenticationTestGit extends TestBaseGit {
 
     HomePage homePage;
     AuthenticationPage authenticationPage;

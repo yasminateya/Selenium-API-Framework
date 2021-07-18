@@ -3,7 +3,7 @@
 <suite name="Web-Automation practice">
     <test verbose="2" preserve-order="true" name="D:/qc-4sale-automated-tests">
         <classes>
-            <class name="tests.AuthenticationTest">
+            <class name="tests.AuthenticationTestGit">
                 <methods>
                     <!--					<include name="SomeTest"/>-->
                 </methods>
