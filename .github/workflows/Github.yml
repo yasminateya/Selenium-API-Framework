@@ -23,3 +23,11 @@ jobs:
         distribution: 'adopt'
     - name: Build with Maven
       run: mvn clean test
+
+    # Finally we upload the results to Calliope.
+    - name: Upload results to Calliope
+      run: curl -X POST
+           -H "x-api-key:${{ secrets.API_KEY }}"
+           -H "multipart/form-data"
+           -F "file[]=@../target/surefire-reports/testng-results.xml"
+           "https://app.calliope.pro/api/v2/profile/${{ secrets.PROFILE_ID }}/import/cucumber?os=myos&platform=myplatform&build=mybuild"
