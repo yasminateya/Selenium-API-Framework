@@ -26,7 +26,8 @@ public class AuthenticationTestGit extends TestBaseGit {
 
         authenticationPage.visibilityWait(authenticationPage.alertLabelMail);
 
-        Assert.assertFalse(authenticationPage.alertLabelMail.isDisplayed(), "Create an account page is displayed");
+        doAssertEqual(authenticationPage.alertLabelMail.isDisplayed(), false, "Create an account page is displayed");
+        softAssert.assertAll();
 //todo:make it assertTrue
     }
 
