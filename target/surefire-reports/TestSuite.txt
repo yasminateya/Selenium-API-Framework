@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: TestSuite
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 19.746 s <<< FAILURE! - in TestSuite
-registerWithInValidMail(tests.AuthenticationTestGit)  Time elapsed: 2.999 s  <<< FAILURE!
-java.lang.AssertionError: Create an account page is displayed expected [false] but found [true]
-	at tests.AuthenticationTestGit.registerWithInValidMail(AuthenticationTestGit.java:29)
-
