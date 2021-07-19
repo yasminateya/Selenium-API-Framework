@@ -1,6 +1,8 @@
 package tests;
 
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,6 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
 import io.github.bonigarcia.wdm.WebDriverManager;
+
 import java.util.concurrent.TimeUnit;
 
 public class TestBaseGit {
@@ -46,15 +49,23 @@ public class TestBaseGit {
     }
 
     boolean doAssertEqual(Object Actual, Object Expected, String message) {
-
         softAssert.assertEquals(Actual, Expected, message);
-        return String.valueOf(Expected).equals(String.valueOf(Actual));
+        if (!String.valueOf(Expected).equals(String.valueOf(Actual))) {
+            saveScreenshotPNG();
+            return false;
+        }
+
+        return true;
     }
 
     @AfterClass
     public void quitDriver() {
 
         driver.quit();
+    }
+
+    public void saveScreenshotPNG() {
+        ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
 }
