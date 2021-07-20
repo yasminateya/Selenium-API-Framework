@@ -15,7 +15,7 @@ public class AuthenticationTestGit extends TestBaseGit {
     String validMail = "yasminateya96@gmail.com";
     String invalidMail = "yasmin";
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "I can't register with invalid mail")
     public void registerWithInValidMail() {
 
         homePage = new HomePage(driver);
@@ -30,7 +30,7 @@ public class AuthenticationTestGit extends TestBaseGit {
 //todo: make it assertTrue
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "I can register with valid mail")
     public void registerWithValidMail() {
 
         authenticationPage = new AuthenticationPage(driver);

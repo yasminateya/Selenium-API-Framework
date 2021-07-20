@@ -43,13 +43,9 @@ public class TestBaseGit {
     }
 
     @AfterMethod
-    void afterMethod() {
-
-        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
-    }
-
-    @AfterMethod
     public void screenshotOnFailure(ITestResult result) {
+        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+
         if (result.getStatus() == ITestResult.FAILURE) {
             System.out.println("Failed!");
             System.out.println("Taking Screenshot....");
