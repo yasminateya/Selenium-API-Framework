@@ -1,29 +1,32 @@
 package API.Platform;
 
-import files.Payload;
 import io.restassured.RestAssured;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import static io.restassured.RestAssured.given;
 
 public class AddPlace_Post { // sec 5,
-    //post : is used to send data to a server to create/update a resource.
-
+    // post : is used to send data to a server to create/update a resource.
     // given: for all input details
     // when: for submitting api + resource link + HTTP method
     // then : for assertions
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
 //    public void testResponseCode_Header(){ //1. assert on status code & response header
 
-        RestAssured.baseURI = "https://rahulshettyacademy.com";
-        given().log().all().queryParam("key", "qaclick123")   // log all for all (request)input details
-                .header("Content-Type", "application/json")
-                .body(Payload.addPlaceBody())
-                .when().post("/maps/api/place/add/json")
-                .then().log().all()                               // log all response details
-                .assertThat()
-                .statusCode(200)
-                .header("Content-Type", "application/json;charset=UTF-8");
-    }
+//        RestAssured.baseURI = "https://rahulshettyacademy.com";
+//        given().log().all().queryParam("key", "qaclick123")   // log all for all (request)input details
+//                .header("Content-Type", "application/json")
+//                .body(Payload.addPlaceBody())
+//                .when().post("/maps/api/place/add/json")
+//                .then().log().all()                               // log all response details
+//                .assertThat()
+//                .statusCode(200)
+//                .header("Content-Type", "application/json;charset=UTF-8");
+//    }
 
         //Add - update place and get this place to validate the new address is present
         // but before that we need to save the added place in a variable
@@ -78,5 +81,19 @@ public class AddPlace_Post { // sec 5,
 //        Assert.assertEquals(Actual_newAddressAfterPut, Expected_newAddressAfterPut);
 
 
+        /***************** parse json file instead of add it as string, because the body accepts string *************************/
+
+        RestAssured.baseURI = "https://rahulshettyacademy.com";
+        given().log().all().queryParam("key", "qaclick123")   // log all for all (request)input details
+                .header("Content-Type", "application/json")
+                .body(new String(Files.readAllBytes(Paths.get(System.getProperty("user.dir") + "/src/main/java/files/addPlacePayload.json"))))
+                // use readAllBytes to convert file > bytes then
+                // the bytes > string by passing this to new object from String
+                .when().post("/maps/api/place/add/json")
+                .then().log().all()                               // log all response details
+                .assertThat()
+                .statusCode(200)
+                .header("Content-Type", "application/json;charset=UTF-8");
+    }
 
 }

@@ -53,6 +53,10 @@ public class Payload {
 //        6. Verify if Sum of all Course prices matches with Purchase Amount
     }
 
+
+//    Advanced payload creation strategies
+//     1. Sending parameters to payload from Test
+
     public static String addBookBody (String isbn, String aisle){
         return "{\n" +
                 "\"name\":\"Learn Appium Automation with Java\",\n" +
